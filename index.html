@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Links Úteis v3.0</title>
+    <title>Links Úteis v4.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#033D60">
     
@@ -17,6 +17,10 @@
         font-family: Verdana, sans-serif;
         margin: 0; padding: 0;
         color: #201E1E;
+        
+        /* Fonte base diminuída levemente (15px) */
+        font-size: 15px; 
+        line-height: 1.5;
       }
       
       .container { width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 40px; }
@@ -26,7 +30,7 @@
       #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
       #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
 
-      /* === MENU HORIZONTAL === */
+      /* === MENU HORIZONTAL (ABAS) === */
       #categories-section { 
           background-color: #CDD4DC; 
           padding: 12px 0; 
@@ -34,57 +38,52 @@
           border-bottom: 1px solid #bbb;
           position: sticky; top: 0; z-index: 999;
           
-          /* ROLAGEM */
+          /* ROLAGEM LATERAL */
           overflow-x: auto; 
-          white-space: nowrap; 
+          white-space: nowrap; /* OBRIGATÓRIO: SEGURA TUDO NA MESMA LINHA */
           -webkit-overflow-scrolling: touch;
       }
       
       #category-tabs {
         padding: 0 10px;
         display: block; 
-        font-size: 0; /* Remove espaços entre inline-blocks */
-        width: max-content; /* FORÇA O CONTAINER A CRESCER INFINITAMENTE */
+        font-size: 0; /* Truque para remover espaços entre botões */
+        width: max-content; /* O container cresce o quanto precisar */
       }
-
-      /* Esconde barra de rolagem */
       #categories-section::-webkit-scrollbar { display: none; }
 
       #category-tabs button {
         display: inline-block;
-        vertical-align: middle;
+        vertical-align: top; /* Alinha todos pelo topo */
         
-        /* DIMENSÕES TRAVADAS */
-        height: 50px; 
-        line-height: 48px; /* 50px - 2px de borda */
-        padding: 0 25px;   /* Bastante espaço lateral */
-        margin-right: 8px;
+        /* DIMENSÕES */
+        height: 46px;        /* Altura fixa */
+        line-height: 44px;   /* Centraliza texto verticalmente (46 - 2px borda) */
+        padding: 0 15px;     /* Espaço lateral um pouco menor */
+        margin-right: 6px;
         
-        /* A MÁGICA PARA NÃO QUEBRAR */
-        width: auto;        /* Largura automática */
-        min-width: 100px;   
-        max-width: none;    /* Remove limites máximos */
+        /* FONTES MENORES (PEDIDO DO USUÁRIO) */
+        font-size: 13px !important; /* Reduzido para evitar quebra */
+        font-weight: bold;
         
         /* ESTILO */
         background-color: #FFFFFF;
         border: 1px solid #033D60; 
         color: #033D60;
-        font-size: 15px; /* Tamanho legível */
-        font-weight: bold;
         border-radius: 6px; 
         text-transform: uppercase;
         cursor: pointer;
         text-align: center;
         
-        /* SEGURANÇA FINAL */
-        white-space: nowrap !important; /* O TEXTO NÃO PODE DESCER */
+        /* BLINDAGEM DE TEXTO */
+        white-space: nowrap !important; 
       }
 
       #category-tabs button.active { 
         background-color: #033D60; color: #FFFFFF; border-color: #033D60;
       }
 
-      /* === LINKS === */
+      /* === LISTA DE LINKS === */
       #links-section { 
           background-color: #CDD4DC; 
           padding: 15px 10px; 
@@ -96,13 +95,32 @@
       
       #links-list a { 
           display: block; background-color: #FFFFFF;
-          padding: 18px 15px;
           border-radius: 6px; text-decoration: none; color: #033D60;
           font-weight: bold; font-size: 1rem;
           box-shadow: 0 1px 2px rgba(0,0,0,0.1);
           border-left: 4px solid #ccc; 
+          
+          /* Espaçamento padrão Mobile */
+          padding: 18px 15px; 
+          line-height: 1.4;
       }
       #links-list a:hover { background-color: #f0f0f0; border-left-color: #033D60; }
+
+      /* === REGRAS ESPECÍFICAS PARA PC (TELAS GRANDES) === */
+      @media (min-width: 768px) {
+        /* Aumenta altura das linhas em 30% no PC */
+        #links-list a {
+            padding: 25px 20px; /* Mais "gordo" */
+            line-height: 1.8;   /* Altura da linha maior */
+            font-size: 1.1rem;  /* Letra um pouco maior no PC */
+        }
+        
+        /* No PC, os botões do menu também podem ser maiores */
+        #category-tabs button {
+            font-size: 14px !important;
+            padding: 0 25px;
+        }
+      }
 
       /* MENSAGENS */
       #loading { padding: 40px; text-align: center; color: #666; font-style: italic; }
@@ -113,7 +131,7 @@
     <div class="container">
       <div id="header">
         <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
-        <h2>Links Úteis v3.0</h2>
+        <h2>Links Úteis v4.0</h2>
       </div>
 
       <div id="loading">Carregando...</div>
@@ -174,7 +192,6 @@
           buttons.forEach(b => b.classList.remove('active'));
           btnElement.classList.add('active');
           
-          // Centraliza na rolagem
           const container = document.getElementById('categories-section');
           const scrollLeft = btnElement.offsetLeft - (container.offsetWidth / 2) + (btnElement.offsetWidth / 2);
           container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
