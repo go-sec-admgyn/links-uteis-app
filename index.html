@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Links Úteis v4.0</title>
+    <title>Links Úteis v5.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#033D60">
     
@@ -17,8 +17,6 @@
         font-family: Verdana, sans-serif;
         margin: 0; padding: 0;
         color: #201E1E;
-        
-        /* Fonte base diminuída levemente (15px) */
         font-size: 15px; 
         line-height: 1.5;
       }
@@ -30,43 +28,37 @@
       #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
       #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
 
-      /* === MENU HORIZONTAL (ABAS) === */
+      /* === MENU HORIZONTAL (MANTIDO IGUAL V4) === */
       #categories-section { 
           background-color: #CDD4DC; 
           padding: 12px 0; 
           display: none; 
           border-bottom: 1px solid #bbb;
           position: sticky; top: 0; z-index: 999;
-          
-          /* ROLAGEM LATERAL */
           overflow-x: auto; 
-          white-space: nowrap; /* OBRIGATÓRIO: SEGURA TUDO NA MESMA LINHA */
+          white-space: nowrap; 
           -webkit-overflow-scrolling: touch;
       }
       
       #category-tabs {
         padding: 0 10px;
         display: block; 
-        font-size: 0; /* Truque para remover espaços entre botões */
-        width: max-content; /* O container cresce o quanto precisar */
+        font-size: 0; 
+        width: max-content; 
       }
       #categories-section::-webkit-scrollbar { display: none; }
 
       #category-tabs button {
         display: inline-block;
-        vertical-align: top; /* Alinha todos pelo topo */
-        
-        /* DIMENSÕES */
-        height: 46px;        /* Altura fixa */
-        line-height: 44px;   /* Centraliza texto verticalmente (46 - 2px borda) */
-        padding: 0 15px;     /* Espaço lateral um pouco menor */
+        vertical-align: top; 
+        height: 46px;        
+        line-height: 44px;   
+        padding: 0 15px;     
         margin-right: 6px;
         
-        /* FONTES MENORES (PEDIDO DO USUÁRIO) */
-        font-size: 13px !important; /* Reduzido para evitar quebra */
+        font-size: 13px !important; /* Pequeno e seguro */
         font-weight: bold;
         
-        /* ESTILO */
         background-color: #FFFFFF;
         border: 1px solid #033D60; 
         color: #033D60;
@@ -74,8 +66,6 @@
         text-transform: uppercase;
         cursor: pointer;
         text-align: center;
-        
-        /* BLINDAGEM DE TEXTO */
         white-space: nowrap !important; 
       }
 
@@ -83,15 +73,15 @@
         background-color: #033D60; color: #FFFFFF; border-color: #033D60;
       }
 
-      /* === LISTA DE LINKS === */
+      /* === LISTA DE LINKS (AGORA COMPACTA -30%) === */
       #links-section { 
           background-color: #CDD4DC; 
-          padding: 15px 10px; 
+          padding: 10px 10px; /* Reduzi padding externo */
           display: none;
           min-height: 60vh;
       }
       #links-list { list-style: none; padding: 0; margin: 0; }
-      #links-list li { margin-bottom: 10px; }
+      #links-list li { margin-bottom: 8px; /* Reduzi espaço entre itens */ }
       
       #links-list a { 
           display: block; background-color: #FFFFFF;
@@ -100,25 +90,17 @@
           box-shadow: 0 1px 2px rgba(0,0,0,0.1);
           border-left: 4px solid #ccc; 
           
-          /* Espaçamento padrão Mobile */
-          padding: 18px 15px; 
-          line-height: 1.4;
+          /* === AQUI ESTÁ A REDUÇÃO DE 30% === */
+          padding: 12px 15px;  /* Era 18px no mobile e 25px no PC */
+          line-height: 1.3;    /* Linha mais justa */
       }
       #links-list a:hover { background-color: #f0f0f0; border-left-color: #033D60; }
 
-      /* === REGRAS ESPECÍFICAS PARA PC (TELAS GRANDES) === */
+      /* No PC, mantemos compacto também */
       @media (min-width: 768px) {
-        /* Aumenta altura das linhas em 30% no PC */
         #links-list a {
-            padding: 25px 20px; /* Mais "gordo" */
-            line-height: 1.8;   /* Altura da linha maior */
-            font-size: 1.1rem;  /* Letra um pouco maior no PC */
-        }
-        
-        /* No PC, os botões do menu também podem ser maiores */
-        #category-tabs button {
-            font-size: 14px !important;
-            padding: 0 25px;
+            padding: 12px 20px; /* Mantém altura baixa, só alarga laterais */
+            font-size: 1rem;    /* Fonte padrão, sem aumentar */
         }
       }
 
@@ -131,7 +113,7 @@
     <div class="container">
       <div id="header">
         <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
-        <h2>Links Úteis v4.0</h2>
+        <h2>Links Úteis v5.0</h2>
       </div>
 
       <div id="loading">Carregando...</div>
