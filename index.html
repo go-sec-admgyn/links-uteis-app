@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Links Úteis v2.1</title>
+    <title>Links Úteis v3.0</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#033D60">
     
@@ -26,7 +26,7 @@
       #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
       #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
 
-      /* === MENU HORIZONTAL (ESTRATÉGIA INLINE-BLOCK) === */
+      /* === MENU HORIZONTAL === */
       #categories-section { 
           background-color: #CDD4DC; 
           padding: 12px 0; 
@@ -34,39 +34,42 @@
           border-bottom: 1px solid #bbb;
           position: sticky; top: 0; z-index: 999;
           
-          /* AQUI ESTÁ O SEGREDO: */
-          overflow-x: auto; /* ROLAGEM LATERAL */
-          white-space: nowrap; /* PROIBIDO QUEBRAR LINHA NO CONTAINER */
+          /* ROLAGEM */
+          overflow-x: auto; 
+          white-space: nowrap; 
           -webkit-overflow-scrolling: touch;
       }
       
-      /* Container interno para garantir espaçamento */
       #category-tabs {
         padding: 0 10px;
         display: block; 
-        font-size: 0; /* Remove espaços fantasmas entre botões */
+        font-size: 0; /* Remove espaços entre inline-blocks */
+        width: max-content; /* FORÇA O CONTAINER A CRESCER INFINITAMENTE */
       }
 
       /* Esconde barra de rolagem */
       #categories-section::-webkit-scrollbar { display: none; }
 
       #category-tabs button {
-        /* COMPORTAMENTO */
-        display: inline-block; /* Fica um ao lado do outro como letras */
+        display: inline-block;
         vertical-align: middle;
         
-        /* TAMANHO */
-        height: 50px;
-        line-height: 50px; /* Centraliza texto verticalmente sem Flexbox */
-        padding: 0 20px;
-        margin-right: 8px; /* Espaço entre botões */
-        min-width: 100px;
+        /* DIMENSÕES TRAVADAS */
+        height: 50px; 
+        line-height: 48px; /* 50px - 2px de borda */
+        padding: 0 25px;   /* Bastante espaço lateral */
+        margin-right: 8px;
+        
+        /* A MÁGICA PARA NÃO QUEBRAR */
+        width: auto;        /* Largura automática */
+        min-width: 100px;   
+        max-width: none;    /* Remove limites máximos */
         
         /* ESTILO */
         background-color: #FFFFFF;
         border: 1px solid #033D60; 
         color: #033D60;
-        font-size: 16px; /* Restaura tamanho da fonte (pois container é 0) */
+        font-size: 15px; /* Tamanho legível */
         font-weight: bold;
         border-radius: 6px; 
         text-transform: uppercase;
@@ -74,7 +77,7 @@
         text-align: center;
         
         /* SEGURANÇA FINAL */
-        white-space: nowrap; /* O texto dentro do botão NÃO PODE quebrar */
+        white-space: nowrap !important; /* O TEXTO NÃO PODE DESCER */
       }
 
       #category-tabs button.active { 
@@ -110,7 +113,7 @@
     <div class="container">
       <div id="header">
         <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
-        <h2>Links Úteis_v2.1 (Final)</h2>
+        <h2>Links Úteis v3.0</h2>
       </div>
 
       <div id="loading">Carregando...</div>
@@ -173,7 +176,6 @@
           
           // Centraliza na rolagem
           const container = document.getElementById('categories-section');
-          // Lógica simples de scroll para inline-block
           const scrollLeft = btnElement.offsetLeft - (container.offsetWidth / 2) + (btnElement.offsetWidth / 2);
           container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
       }
