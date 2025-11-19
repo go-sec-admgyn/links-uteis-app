@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Links Úteis_v1.0</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="theme-color" content="#033D60">
+    
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/AZBrg4r.png">
+
+    <style>
+      /* === RESET GERAL === */
+      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+      body {
+        background-color: #FFFFFF;
+        font-family: Verdana, sans-serif;
+        margin: 0; padding: 0;
+        color: #201E1E;
+      }
+      
+      .container { width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 40px; }
+
+      /* === CABEÇALHO === */
+      #header { text-align: center; padding: 15px 0; border-bottom: 1px solid #EAEAEA; background: #fff; }
+      #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
+      #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
+
+      /* === MENU DE ABAS (Estilo "Instagram/YouTube") === */
+      #categories-section { 
+          background-color: #CDD4DC; 
+          padding: 10px 0; 
+          display: none; /* Escondido até carregar */
+          border-bottom: 1px solid #bbb;
+          position: sticky; top: 0; z-index: 100; /* Fixa no topo ao rolar */
+      }
+
+      #category-tabs {
+        display: flex; /* Alinha um ao lado do outro */
+        flex-direction: row;
+        overflow-x: auto; /* Permite rolar para o lado se não couber */
+        gap: 8px; /* Espaço entre botões */
+        padding: 0 10px;
+        
+        /* Remove a barra de rolagem visual mas mantém a função */
+        scrollbar-width: none; 
+        -webkit-overflow-scrolling: touch;
+      }
+      #category-tabs::-webkit-scrollbar { display: none; }
+
+      #category-tabs button {
+        /* === BLINDAGEM DE TAMANHO === */
+        flex: 0 0 auto;  /* Proibido encolher ou esticar */
+        height: 50px;    /* Altura TRAVADA */
+        min-width: 100px; /* Largura mínima para caber o texto */
+        
+        /* === CENTRALIZAÇÃO DO TEXTO === */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        /* === ESTILO === */
+        background-color: #FFFFFF;
+        border: 1px solid #033D60; 
+        color: #033D60;
+        font-size: 0.9rem; /* Tamanho da fonte seguro */
+        font-weight: bold;
+        border-radius: 6px; 
+        text-transform: uppercase;
+        cursor: pointer;
+        
+        /* === SEGURANÇA CONTRA QUEBRA DE LINHA === */
+        white-space: nowrap; /* O texto NUNCA vai para a linha de baixo */
+      }
+
+      #category-tabs button.active { 
+        background-color: #033D60; color: #FFFFFF; border-color: #033D60;
+      }
+
+      /* === LISTA DE LINKS === */
+      #links-section { 
+          background-color: #CDD4DC; 
+          padding: 15px 10px; 
+          display: none;
+          min-height: 60vh;
+      }
+      #links-list { list-style: none; padding: 0; margin: 0; }
+      #links-list li { margin-bottom: 10px; }
+      
+      #links-list a { 
+          display: block; background-color: #FFFFFF;
+          padding: 18px 15px;
+          border-radius: 6px; text-decoration: none; color: #033D60;
+          font-weight: bold; font-size: 1rem;
+          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+          border-left: 4px solid #ccc; /* Detalhe visual */
+      }
+      #links-list a:hover { background-color: #f0f0f0; border-left-color: #033D60; }
+
+      /* === MENSAGENS === */
+      #loading { padding: 40px; text-align: center; color: #666; font-style: italic; }
+      #error { padding: 20px; text-align: center; color: #721c24; background: #f8d7da; margin: 10px; border-radius: 5px; border: 1px solid #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div id="header">
+        <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
+        <h2>Links Úteis_v1.0</h2>
+      </div>
+
+      <div id="loading">Carregando dados...</div>
+      <div id="error" style="display: none;"></div>
+
+      <div id="categories-section" class="content-section">
+        <div id="category-tabs"></div>
+      </div>
+
+      <div id="links-section" class="content-section">
+        <ul id="links-list"></ul>
+      </div>
+    </div>
+
+    <script>
+      // ==================================================================
+      // SUA URL JÁ CONFIGURADA ABAIXO:
+      const API_URL = "https://script.google.com/macros/s/AKfycbxnAyE44yTqjgL1TISQ7rll6EAEtodz-tpYn0ECKDK_dI94NSuR4JJy77oZxMzGV6Tm_g/exec";
+      // ==================================================================
+
+      let allLinksData = {};
+
+      document.addEventListener('DOMContentLoaded', () => { fetchData(); });
+
+      function fetchData() {
+        fetch(API_URL)
+          .then(res => res.json())
+          .then(data => handleInitialData(data))
+          .catch(err => showError("Erro de conexão. Verifique a internet."));
+      }
+
+      function handleInitialData(data) { 
+          hideLoading(); 
+          if (!data || data.error) { showError(data ? data.error : "Erro ao carregar."); return; }
+          
+          allLinksData = data; 
+          const categories = Object.keys(allLinksData).sort(); 
+          const tabsContainer = document.getElementById('category-tabs'); 
+          tabsContainer.innerHTML = ''; 
+          
+          categories.forEach((category, index) => { 
+            const button = document.createElement('button'); 
+            button.innerText = category; 
+            
+            button.onclick = function() { 
+                displayLinks(category);
+                highlightButton(this);
+            }; 
+            tabsContainer.appendChild(button); 
+
+            if (index === 0) {
+                button.classList.add('active');
+                displayLinks(category);
+            }
+          }); 
+          document.getElementById('categories-section').style.display = 'block'; 
+      }
+
+      function highlightButton(btnElement) {
+          const buttons = document.querySelectorAll('#category-tabs button');
+          buttons.forEach(b => b.classList.remove('active'));
+          btnElement.classList.add('active');
+          
+          // Centraliza a aba selecionada na tela (efeito suave)
+          btnElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+
+      function displayLinks(category) { 
+          const linksSection = document.getElementById('links-section');
+          const linksList = document.getElementById('links-list'); 
+          const originalLinks = allLinksData[category] || []; 
+          
+          linksList.innerHTML = ''; 
+          linksSection.style.display = 'block';
+
+          if (originalLinks.length === 0) { linksList.innerHTML = '<li style="text-align:center; color:#999; padding: 20px;">Nenhum link disponível.</li>'; return; }
+
+          originalLinks.forEach(link => { 
+            if(link.name === "Texto apenas para configurar tamanho de fontes") return;
+            const listItem = document.createElement('li'); 
+            const anchor = document.createElement('a'); 
+            anchor.href = link.url; 
+            anchor.innerText = link.name; 
+            if (link.url && !link.url.startsWith('mailto:')) { anchor.target = "_blank"; } 
+            listItem.appendChild(anchor); 
+            linksList.appendChild(listItem); 
+          }); 
+      }
+
+      function hideLoading() { document.getElementById('loading').style.display = 'none'; }
+      function showError(msg) { document.getElementById('error').innerText = msg; document.getElementById('error').style.display = 'block'; hideLoading(); }
+
+      // === COMANDO PARA LIMPAR O CACHE ANTIGO AUTOMATICAMENTE ===
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          for(let registration of registrations) {
+            registration.unregister(); // Remove o PWA antigo para atualizar o CSS
+          }
+        });
+      }
+    </script>
+</body>
+</html>
