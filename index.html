@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Links Úteis_v2.0</title>
+    <title>Links Úteis v2.1</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#033D60">
     
@@ -26,59 +26,55 @@
       #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
       #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
 
-      /* === MENU HORIZONTAL (BLINDADO) === */
+      /* === MENU HORIZONTAL (ESTRATÉGIA INLINE-BLOCK) === */
       #categories-section { 
           background-color: #CDD4DC; 
-          padding: 10px 0; 
+          padding: 12px 0; 
           display: none; 
           border-bottom: 1px solid #bbb;
-          
-          /* Fixar no topo ao rolar */
           position: sticky; top: 0; z-index: 999;
+          
+          /* AQUI ESTÁ O SEGREDO: */
+          overflow-x: auto; /* ROLAGEM LATERAL */
+          white-space: nowrap; /* PROIBIDO QUEBRAR LINHA NO CONTAINER */
+          -webkit-overflow-scrolling: touch;
+      }
+      
+      /* Container interno para garantir espaçamento */
+      #category-tabs {
+        padding: 0 10px;
+        display: block; 
+        font-size: 0; /* Remove espaços fantasmas entre botões */
       }
 
-      #category-tabs {
-        /* FORÇA LINHA ÚNICA */
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap; /* Proibido descer linha */
-        overflow-x: auto;  /* Rolar para o lado */
-        
-        gap: 8px;
-        padding: 0 12px;
-        
-        /* Alinhamento Vertical */
-        align-items: stretch; /* Faz todos terem a mesma altura do maior */
-        
-        /* Esconde barra de rolagem */
-        scrollbar-width: none; 
-        -webkit-overflow-scrolling: touch;
-      }
-      #category-tabs::-webkit-scrollbar { display: none; }
+      /* Esconde barra de rolagem */
+      #categories-section::-webkit-scrollbar { display: none; }
 
       #category-tabs button {
-        /* === O SEGREDO === */
-        flex: 0 0 auto;   /* Não deixa o botão encolher */
-        height: 50px;     /* Altura fixa */
-        min-width: 100px; /* Largura mínima */
+        /* COMPORTAMENTO */
+        display: inline-block; /* Fica um ao lado do outro como letras */
+        vertical-align: middle;
         
-        /* CENTRALIZAR TEXTO */
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        /* TAMANHO */
+        height: 50px;
+        line-height: 50px; /* Centraliza texto verticalmente sem Flexbox */
+        padding: 0 20px;
+        margin-right: 8px; /* Espaço entre botões */
+        min-width: 100px;
         
         /* ESTILO */
         background-color: #FFFFFF;
         border: 1px solid #033D60; 
         color: #033D60;
-        font-size: 0.9rem;
+        font-size: 16px; /* Restaura tamanho da fonte (pois container é 0) */
         font-weight: bold;
         border-radius: 6px; 
         text-transform: uppercase;
         cursor: pointer;
+        text-align: center;
         
-        /* === PROIBIDO QUEBRAR TEXTO === */
-        white-space: nowrap !important; /* Garante que o texto fique em uma linha só */
+        /* SEGURANÇA FINAL */
+        white-space: nowrap; /* O texto dentro do botão NÃO PODE quebrar */
       }
 
       #category-tabs button.active { 
@@ -105,16 +101,16 @@
       }
       #links-list a:hover { background-color: #f0f0f0; border-left-color: #033D60; }
 
-      /* === MENSAGENS === */
+      /* MENSAGENS */
       #loading { padding: 40px; text-align: center; color: #666; font-style: italic; }
-      #error { padding: 20px; text-align: center; color: #721c24; background: #f8d7da; margin: 10px; border-radius: 5px; border: 1px solid #f5c6cb; }
+      #error { padding: 20px; text-align: center; color: #721c24; background: #f8d7da; margin: 10px; border-radius: 5px; }
     </style>
 </head>
 <body>
     <div class="container">
       <div id="header">
         <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
-        <h2>Links Úteis_v2.0</h2>
+        <h2>Links Úteis_v2.1 (Final)</h2>
       </div>
 
       <div id="loading">Carregando...</div>
@@ -174,7 +170,12 @@
           const buttons = document.querySelectorAll('#category-tabs button');
           buttons.forEach(b => b.classList.remove('active'));
           btnElement.classList.add('active');
-          btnElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          
+          // Centraliza na rolagem
+          const container = document.getElementById('categories-section');
+          // Lógica simples de scroll para inline-block
+          const scrollLeft = btnElement.offsetLeft - (container.offsetWidth / 2) + (btnElement.offsetWidth / 2);
+          container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
       }
 
       function displayLinks(category) { 
@@ -202,7 +203,6 @@
       function hideLoading() { document.getElementById('loading').style.display = 'none'; }
       function showError(msg) { document.getElementById('error').innerText = msg; document.getElementById('error').style.display = 'block'; hideLoading(); }
 
-      // Força a atualização do Service Worker se existir
       if ('serviceWorker' in navigator) {
          navigator.serviceWorker.getRegistrations().then(regs => {
             for(let reg of regs) { reg.unregister(); }
