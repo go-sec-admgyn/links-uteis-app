@@ -1,212 +1,213 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <title>Links Úteis_v1.0</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="theme-color" content="#033D60">
+<HTML língua="pt-BR">
+<caboça>
+    <meta conjunto de caracteres="UTF-8">
+    <título>Links Úteis_v2.0</título>
+    <meta nome="janela de visualização" conteúdo="largura=largura do dispositivo, escala inicial=1, escala máxima=1, escalar pelo usuário=não">
+    <meta nome="cor do tema" conteúdo="#033D60">
     
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="https://i.imgur.com/AZBrg4r.png">
+    <link relação="manifesto" href="manifesto.json">
+    <link relação="ícone" tipo="imagem/png" href="https://i.imgur.com/AZBrg4r.png">
 
-    <style>
-      /* === RESET GERAL === */
-      * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-      body {
-        background-color: #FFFFFF;
-        font-family: Verdana, sans-serif;
-        margin: 0; padding: 0;
-        color: #201E1E;
+    <estilo>
+ /* === REDEFINIR === */
+ * { dimensionamento de caixa: caixa de fronteira; -webkit-toque-destaque-cor: transparente; }
+ corpo {
+ cor de fundo: #FFFFFF;
+ família de fontes: Verdana, sem serifa;
+ margem: 0; enchimento: 0;
+ cor: #201E1E;
       }
       
-      .container { width: 100%; max-width: 960px; margin: 0 auto; padding-bottom: 40px; }
+ .receptor { largura: 100%; largura máxima: 960px; março: 0 auto; fundo de enchimento: 40px; }
 
-      /* === CABEÇALHO === */
-      #header { text-align: center; padding: 15px 0; border-bottom: 1px solid #EAEAEA; background: #fff; }
-      #header img { display: block; margin: 0 auto 5px auto; max-width: 140px; height: auto; }
-      #header h2 { color: #201E1E; margin: 0; font-size: 1.3em; }
+ /* === CABEÇALHO === */
+ #cabeçalho { alinhamento de texto: centro; pré-enchimento: 15px 0; fundo da fronteira: 1px sólido #EAEAEA; fundo: #fff; }
+ #cabeçalho imagem { exibir: bloquear; margem: 0 auto 5px auto; largura máxima: 140px; alta: auto; }
+ #cabeçalho h2 { cor: #201E1E; margem: 0; tamanho da fonte: 1,3em; }
 
-      /* === MENU DE ABAS (Estilo "Instagram/YouTube") === */
-      #categories-section { 
-          background-color: #CDD4DC; 
-          padding: 10px 0; 
-          display: none; /* Escondido até carregar */
-          border-bottom: 1px solid #bbb;
-          position: sticky; top: 0; z-index: 100; /* Fixa no topo ao rolar */
+ /* === MENU HORIZONTAL (BLINDADO) === */
+ #seção de categorias { 
+ cor de fundo: #CDD4DC; 
+ enchimento: 10px 0; 
+ exibir: nenhum; 
+ fundo da fronteira: 1px sólido #bbb;
+          
+ /* Fixar no topo ao rolar */
+ posição: pegajoso; topo: 0; índice z: 999;
       }
 
-      #category-tabs {
-        display: flex; /* Alinha um ao lado do outro */
-        flex-direction: row;
-        overflow-x: auto; /* Permite rolar para o lado se não couber */
-        gap: 8px; /* Espaço entre botões */
-        padding: 0 10px;
+ #guias de categoria {
+ /* FORÇA LINHA ÚNICA */
+ exibir: flexível;
+ direção flexível: linha;
+ envolvimento flexível: embrulha agora; /* Proibido descer linha */
+ transbordamento-x: auto; /* Rolar para o lado */
         
-        /* Remove a barra de rolagem visual mas mantém a função */
-        scrollbar-width: none; 
-        -webkit-overflow-scrolling: touch;
-      }
-      #category-tabs::-webkit-scrollbar { display: none; }
-
-      #category-tabs button {
-        /* === BLINDAGEM DE TAMANHO === */
-        flex: 0 0 auto;  /* Proibido encolher ou esticar */
-        height: 50px;    /* Altura TRAVADA */
-        min-width: 100px; /* Largura mínima para caber o texto */
+ lacuna: 8px;
+ enchimento: 0 12px;
         
-        /* === CENTRALIZAÇÃO DO TEXTO === */
-        display: flex;
-        align-items: center;
-        justify-content: center;
+ /* Alinhamento Vertical */
+ alinhar itens: esticar; /* Faz todos terem a mesa alta do maior */
         
-        /* === ESTILO === */
-        background-color: #FFFFFF;
-        border: 1px solid #033D60; 
-        color: #033D60;
-        font-size: 0.9rem; /* Tamanho da fonte seguro */
-        font-weight: bold;
-        border-radius: 6px; 
-        text-transform: uppercase;
-        cursor: pointer;
+ /* Esconde barra de rolagem */
+ larga da barra de rolagem: nenhum; 
+ -webkit-overflow-scrolling: tocar;
+      }
+ #guias de categoria::-barra de rolagem do webkit { exibir: nenhum; }
+
+ #category-tabs botão {
+ /* === O SEGREDO === */
+ flex: 0 0 auto; /* Não dêixa o botão encolher */
+ alta: 50px; /* Altura fixa */
+ largura mínima: 100px; /* Largura mínima */
         
-        /* === SEGURANÇA CONTRA QUEBRA DE LINHA === */
-        white-space: nowrap; /* O texto NUNCA vai para a linha de baixo */
+ /* CENTRALIZADOR DE TEXTO */
+ exigência: flexível;
+ alinhar itens: centro;
+ justificar-conteúdo: centro;
+        
+ /* ESTILO */
+ cor de fundo: #FFFFFF;
+ borda: 1px sólido #033D60; 
+ cor: #033D60;
+ tamanho da fonte: 0,9rem;
+ peso da fonte: negrito;
+ raio da borda: 6px; 
+ transformação de texto: maiúsculas;
+ cursor: ponteiro;
+        
+ /* === PROIBIDO QUEBRAR TEXTO === */
+ espaço em branco: nowrap!importante; /* Garante que o texto fique em uma linha só */
       }
 
-      #category-tabs button.active { 
-        background-color: #033D60; color: #FFFFFF; border-color: #033D60;
+ #category-tabs botão.ativo { 
+ cor de fundo: #033D60; cor: #FFFFFF; cor da borda: #033D60;
       }
 
-      /* === LISTA DE LINKS === */
-      #links-section { 
-          background-color: #CDD4DC; 
-          padding: 15px 10px; 
-          display: none;
-          min-height: 60vh;
+ /* === LINKS === */
+ #links-section { 
+ cor de fundo: #CDD4DC; 
+ pré-enchimento: 15px 10px; 
+ exibição: nenhuma;
+ alta mínima: 60vh;
       }
-      #links-list { list-style: none; padding: 0; margin: 0; }
-      #links-list li { margin-bottom: 10px; }
+ #links-list { estilo de lista: nenhum; pré-enchimento: 0; março: 0; }
+ #links-list li { margem inferior: 10px; }
       
-      #links-list a { 
-          display: block; background-color: #FFFFFF;
-          padding: 18px 15px;
-          border-radius: 6px; text-decoration: none; color: #033D60;
-          font-weight: bold; font-size: 1rem;
-          box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-          border-left: 4px solid #ccc; /* Detalhe visual */
+ #links-list a { 
+ exigência: bloco; cor de fundo: #FFFFFF;
+ pré-enchimento: 18px 15px;
+ raio da borda: 6px; decoração de texto: nenhuma; cor: #033D60;
+ peso da fonte: negrito; tamanho da fonte: 1rem;
+ sombra da caixa: 0 1px 2px rgba(0,0,0,0,1);
+ borda esquerda: 4px sólido #ccc; 
       }
-      #links-list a:hover { background-color: #f0f0f0; border-left-color: #033D60; }
+ #links-list a:hover { cor de fundo: #f0f0f0; cor da borda esmeralda: #033D60; }
 
-      /* === MENSAGENS === */
-      #loading { padding: 40px; text-align: center; color: #666; font-style: italic; }
-      #error { padding: 20px; text-align: center; color: #721c24; background: #f8d7da; margin: 10px; border-radius: 5px; border: 1px solid #f5c6cb; }
-    </style>
-</head>
-<body>
-    <div class="container">
-      <div id="header">
-        <img src="https://i.imgur.com/AZBrg4r.png" alt="Logo CCB">
-        <h2>Links Úteis_v1.0</h2>
-      </div>
+ /* === MENSAGENS === */
+ #loading { preenchimento: 40px; alinhamento de texto: centro; cor: #666; estilo de fonte: itálico; }
+ #error { preenchimento: 20px; alinhamento de texto: centro; cor: #721c24; fundo: #f8d7da; margem: 10px; raio da borda: 5px; borda: 1px sólido #f5c6cb; }
+    </estilo>
+</caboça>
+<corpo>
+    <dividir classe="contêiner">
+      <dividir id="cabeçalho">
+        <imagem fonte="https://i.imgur.com/AZBrg4r.png" alt="Logotipo CCB">
+        <h2>Links Úteis_v2.0</h2>
+      </dividir>
 
-      <div id="loading">Carregando dados...</div>
-      <div id="error" style="display: none;"></div>
+      <dividir id="carregando">Carregando...</dividir>
+      <dividir id="erro" estilo="exibir: nenhum;"></dividir>
 
-      <div id="categories-section" class="content-section">
-        <div id="category-tabs"></div>
-      </div>
+      <dividir id="seção de categorias" classe="seção de conteúdo">
+        <dividir id="guias de categoria"></dividir>
+      </dividir>
 
-      <div id="links-section" class="content-section">
-        <ul id="links-list"></ul>
-      </div>
-    </div>
+      <dividir id="seção de links" classe="seção de conteúdo">
+        <ul id="lista de links"></ul>
+      </dividir>
+    </dividir>
 
-    <script>
-      // ==================================================================
-      // SUA URL JÁ CONFIGURADA ABAIXO:
+    <roteiro>
       const API_URL = "https://script.google.com/macros/s/AKfycbxnAyE44yTqjgL1TISQ7rll6EAEtodz-tpYn0ECKDK_dI94NSuR4JJy77oZxMzGV6Tm_g/exec";
-      // ==================================================================
 
-      let allLinksData = {};
+      dêixar todos os linksDados = {};
 
-      document.addEventListener('DOMContentLoaded', () => { fetchData(); });
+      documento.addEventListener('DOMContentLoaded', () => { buscarDados(); });
 
-      function fetchData() {
-        fetch(API_URL)
-          .then(res => res.json())
-          .then(data => handleInitialData(data))
-          .catch(err => showError("Erro de conexão. Verifique a internet."));
+      diversidade buscarDados() {
+        ônibus(API_URL)
+          .entidade(res => res.json())
+          .entidade(dados => manipularDadosIniciais(dados))
+          .Pégar(errar => maiserro("Erro de conexão."));
       }
 
-      function handleInitialData(data) { 
-          hideLoading(); 
-          if (!data || data.error) { showError(data ? data.error : "Erro ao carregar."); return; }
+      diversidade manipularDadosIniciais(dados) { 
+          ocultarCarregando(); 
+          se (!dados || dados.erro) { maiserro(dados ? dados.erro : "Erro."); retornar; }
           
-          allLinksData = data; 
-          const categories = Object.keys(allLinksData).sort(); 
-          const tabsContainer = document.getElementById('category-tabs'); 
-          tabsContainer.innerHTML = ''; 
+          todos os linksDados = dados; 
+          const categorias = Objeto.chaves(todos os linksDados).classificador(); 
+          const tabsContainer = documento.obterElementoPorId('guias de categoria'); 
+          tabsContainer.HTML interno = ''; 
           
-          categories.forEach((category, index) => { 
-            const button = document.createElement('button'); 
-            button.innerText = category; 
+          categorias.parágrafo cada cantarolar((categoria, índio) => { 
+            const botão = documento.criarElemento('botão'); 
+            botão.texto interno = categoria; 
             
-            button.onclick = function() { 
-                displayLinks(category);
-                highlightButton(this);
+            botão.clicar em = diversidade() { 
+                links de exibição(categoria);
+                botão de desesticar(este);
             }; 
-            tabsContainer.appendChild(button); 
+            tabsContainer.anexarCriança(botão); 
 
-            if (index === 0) {
-                button.classList.add('active');
-                displayLinks(category);
+            se (índio === 0) {
+                botão.lista de aulas.adicionário('ativo');
+                links de exibição(categoria);
             }
           }); 
-          document.getElementById('categories-section').style.display = 'block'; 
+          documento.obterElementoPorId('seção de categorias').estilo.exibir = 'bloco'; 
       }
 
-      function highlightButton(btnElement) {
-          const buttons = document.querySelectorAll('#category-tabs button');
-          buttons.forEach(b => b.classList.remove('active'));
-          btnElement.classList.add('active');
-          
-          // Centraliza a aba selecionada na tela (efeito suave)
-          btnElement.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      diversidade botão de desesticar(elemento btn) {
+          const botões = documento.consultaSelectorAll('#category-tabs botão');
+          botões.parágrafo cada cantarolar(b => b.lista de aulas.removedor('ativo'));
+          elemento btn.lista de aulas.adicionário('ativo');
+          elemento btn.rugido parágrafo dentro sim visualização({ comportamento: 'suave', bloquear: 'mais próximo', em linha: 'centro' });
       }
 
-      function displayLinks(category) { 
-          const linksSection = document.getElementById('links-section');
-          const linksList = document.getElementById('links-list'); 
-          const originalLinks = allLinksData[category] || []; 
+      diversidade links de exibição(categoria) { 
+          const linksSeção = documento.obterElementoPorId('seção de links');
+          const lista de links = documento.obterElementoPorId('lista de links'); 
+          const Links originais = todos os linksDados[categoria] || []; 
           
-          linksList.innerHTML = ''; 
-          linksSection.style.display = 'block';
+          lista de links.HTML interno = ''; 
+          linksSeção.estilo.exibir = 'bloco';
 
-          if (originalLinks.length === 0) { linksList.innerHTML = '<li style="text-align:center; color:#999; padding: 20px;">Nenhum link disponível.</li>'; return; }
+          se (Links originais.Comprimento === 0) { lista de links.HTML interno = '<li style="text-align:center; color:#999;">Vazio</li>'; retornar; }
 
-          originalLinks.forEach(link => { 
-            if(link.name === "Texto apenas para configurar tamanho de fontes") return;
-            const listItem = document.createElement('li'); 
-            const anchor = document.createElement('a'); 
-            anchor.href = link.url; 
-            anchor.innerText = link.name; 
-            if (link.url && !link.url.startsWith('mailto:')) { anchor.target = "_blank"; } 
-            listItem.appendChild(anchor); 
-            linksList.appendChild(listItem); 
+          Links originais.parágrafo cada cantarolar(link => { 
+            se(link.nome === "Texto apenas para configurar tamanho de fontes") retornar;
+            const item de lista = documento.criarElemento('eu'); 
+            const âncora = documento.criarElemento('a'); 
+            âncora.href = link.url; 
+            âncora.texto interno = link.nome; 
+            se (link.url && !link.url.começaCom('mailto:')) { âncora.alto = "_em branco"; } 
+            item de lista.anexarCriança(âncora); 
+            lista de links.anexarCriança(item de lista); 
           }); 
       }
 
-      function hideLoading() { document.getElementById('loading').style.display = 'none'; }
-      function showError(msg) { document.getElementById('error').innerText = msg; document.getElementById('error').style.display = 'block'; hideLoading(); }
+      diversidade ocultarCarregando() { documento.obterElementoPorId('carregando').estilo.exibir = 'nenhum'; }
+      diversidade maiserro(mensagem) { documento.obterElementoPorId('erro').texto interno = mensagem; documento.obterElementoPorId('erro').estilo.exibir = 'bloco'; ocultarCarregando(); }
 
-      // === COMANDO PARA LIMPAR O CACHE ANTIGO AUTOMATICAMENTE ===
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.getRegistrations().then(function(registrations) {
-          for(let registration of registrations) {
-            registration.unregister(); // Remove o PWA antigo para atualizar o CSS
-          }
-        });
+      // Força a atualização do Service Worker se existir
+      se ('trabalhador de serviço' em navegador) {
+         navegador.trabalhador de serviço.obterRegistros().entidade(regulamentos => {
+            parágrafo(dêixar reg de regulamentos) { reg.cancelador o registro(); }
+         });
       }
-    </script>
-</body>
-</html>
+    </roteiro>
+</corpo>
+        </HTML>
